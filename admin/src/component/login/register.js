@@ -38,9 +38,15 @@ handleSubmit = (event) => {
         const form = this.createForm();
         form.append('status', "");
         this.call.callAPI("http://localhost/react-backend/account_admin.php", form, "POST");
+
         setTimeout(() => {
-          history.push("confirm");
-        window.location.reload();
+          if(JSON.parse(localStorage.getItem("code"))==0)
+          alert("Account does not exits!")
+          else{
+            history.push("confirm");
+            window.location.reload();
+          }
+          
         }, 4000);
         
     }
